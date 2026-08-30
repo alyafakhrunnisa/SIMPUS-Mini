@@ -13,7 +13,7 @@ body {
 }
 
 a {
-    color: #2b7a4b; /* Berubah jadi hijau */
+    color: #2b7a4b; /* berubah jadi hijau */
     text-decoration: none;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 
 /* ===== Header & Navbar (Flexbox) ===== */
 header {
-    background-color: #2b7a4b; /* Berubah jadi hijau */
+    background-color: #2b7a4b; /* berubah jadi hijau */
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -70,7 +70,7 @@ section h2 {
 /* ===== Kartu Statistik (CSS Grid) ===== */
 main section:nth-of-type(2) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* ubah menjadi 4 kolom */
     gap: 1rem;
 }
 
@@ -90,7 +90,7 @@ main section:nth-of-type(2) article h3 {
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #2b7a4b; /* Berubah jadi hijau */
+    color: #2b7a4b; /* berubah jadi hijau */
 }
 
 /* ===== Tabel ===== */
@@ -161,7 +161,7 @@ form select {
 }
 
 form button[type="submit"] {
-    background-color: #2b7a4b; /* Berubah jadi hijau */
+    background-color: #2b7a4b; /* berubah jadi hijau */
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -171,7 +171,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #1e5635; /* Hijau lebih gelap saat di-hover */
+    background-color: #1e5635; /* hijau lebih gelap saat di-hover */
 }
 
 /* ===== Footer ===== */
