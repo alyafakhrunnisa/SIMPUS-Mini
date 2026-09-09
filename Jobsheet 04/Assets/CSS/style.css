@@ -254,6 +254,7 @@ pre {
         margin-top: 1rem;
     }
 
+    
     .nav-toggle:checked ~ nav {
         display: block;
     }
