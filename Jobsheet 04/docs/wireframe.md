@@ -2,6 +2,7 @@
 Nama: Alya Fakhrun Nisa
 NIM: 254107060036
 Kelas: SIB 1A
+Jurusan:TI
 
 Sub-CPMK: Merancang UI/UX aplikasi (proyek)
 
