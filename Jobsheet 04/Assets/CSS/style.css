@@ -13,7 +13,7 @@ body {
 }
 
 a {
-    color: #2b7a4b; /* berubah jadi hijau */
+    color:  #1d5b8a; 
     text-decoration: none;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 
 /* ===== Header & Navbar (Flexbox) ===== */
 header {
-    background-color: #2b7a4b; /* berubah jadi hijau */
+    background-color:  #1d5b8a;
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -64,7 +64,7 @@ section {
 
 section h2 {
     margin-bottom: 1rem;
-    color: #2b7a4b; /* berubah jadi hijau */
+    color:  #1d5b8a; /* berubah jadi hijau */
 }
 
 /* ===== Kartu Statistik (CSS Grid) ===== */
@@ -90,7 +90,7 @@ main section:nth-of-type(2) article h3 {  /*ngambil section ke 2, article ke 1, 
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #2b7a4b; /* berubah jadi hijau */
+    color:  #1d5b8a; /* berubah jadi hijau */
 }
 
 main section:nth-of-type(2) h2 {
@@ -110,7 +110,7 @@ th, td {
 }
 
 thead {
-    background-color: #2b7a4b; /* berubah jadi hijau */
+    background-color:  #1d5b8a;
     color: #fff;
 }
 
@@ -170,7 +170,7 @@ form select {
 }
 
 form button[type="submit"] {
-    background-color: #2b7a4b; /* berubah jadi hijau */
+    background-color:  #1d5b8a; /* berubah jadi hijau */
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -197,5 +197,85 @@ td:last-child {
     text-align: center;
 }
 
+/* ===== Tabel Responsif ===== */
+.table-responsive {
+    overflow-x: auto;
+}
 
+/* ===== Hamburger Menu (checkbox hack) ===== */
+.nav-toggle {
+    display: none;
+}
 
+.nav-toggle-label {
+    display: none;
+    font-size: 1.6rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Latihan Tambahan 3 */
+/* ===== Blok Kode Responsif ===== */
+pre {
+    background-color: #ffffff; /* Ubah background jadi putih */
+    color: #2b2b2b; /* Ubah teks jadi gelap/hitam biar kelihatan */
+    border: 1px solid #cdd4da; /* Tambahan garis batas biar bentuk kotaknya tegas */
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+/* ===== Responsive Breakpoints ===== */
+
+/* Tablet ke bawah */
+@media (max-width: 900px) { /* :Latihan Tambahan 2 : Menambah breakpoint */
+    main section:nth-of-type(2) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    header {
+        position: relative;
+    }
+
+    .nav-toggle-label {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin-top: 1rem;
+    }
+
+    .nav-toggle:checked ~ nav {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    main section:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+
+    form input,
+    form select {
+        max-width: 100%;
+    }
+}
+
+/* Latihan Tambahan 1 : Menambah breakpoint */
+@media (min-width: 1400px){
+    main {
+        max-width:1200px;
+    }
+}
