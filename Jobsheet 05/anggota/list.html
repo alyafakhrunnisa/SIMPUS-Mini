@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SIMPUS-Mini | Daftar Anggota</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    
+    <header class="navbar navbar-expand-lg navbar-dark shadow-sm bg-aesthetic">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../index.html">SIMPUS-Mini</a>
+            <button id="nav-toggle-btn" class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto gap-2 align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Buku/list.html">Daftar Buku</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Buku/tambah.html">Tambah Buku</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-semibold" href="list.html">Daftar Anggota</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tambah.html">Tambah Anggota</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                    <h2 class="card-title fw-bold m-0 text-aesthetic">Daftar Anggota</h2>
+                    
+                    <!-- Fitur Search Bar Aesthetic -->
+                    <div class="input-group shadow-sm" style="max-width: 350px;">
+                        <input type="text" id="search-input" class="form-control rounded-start-pill border-aesthetic" placeholder="Cari judul, pengarang, ISBN...">
+                        <button class="btn bg-aesthetic text-white rounded-end-pill px-4" type="button">Cari</button>
+                    </div>
+
+                    <a href="tambah.html" class="btn text-white rounded-pill px-4 bg-aesthetic shadow-sm">+ Tambah Anggota</a>
+                </div>
+                <!-- soal tambahan 4 -->
+                <div id="table-counter" class="text-secondary small fw-medium mb-2"></div>
+                <div class="table-responsive rounded-3 border">
+                    <!-- 1. Tambah text-nowrap di sini agar tabel tidak melar -->
+                    <table class="table table-hover align-middle mb-0 text-nowrap">
+                        <thead class="bg-aesthetic text-white">
+                            <tr>
+                                <th class="ps-4">No. Anggota</th>
+                                <th>Nama Lengkap</th>
+                                <th>Prodi</th>
+                                <th>Alamat</th>
+                                <th>No. HP</th>
+                                <th style="padding-left: 65px;">Email</th>
+                                <th>Tgl Bergabung</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- 3. Tambahkan ps-4 juga di sel data pertama agar sejajar dengan header -->
+                                <td class="ps-4 fw-medium text-secondary">A001</td>
+                                <td class="fw-bold">Siti Aminah</td>
+                                <td><span class="badge bg-secondary-subtle text-secondary border border-secondary">SIB</span></td>
+                                <td>Malang</td>
+                                <td>0812xxxx</td>
+                                <td>siti.aminah@gmail.com</td>
+                                <td>2022-01-15</td>
+                                <td class="text-center">
+                                    <button class="btn btn-edit-aes btn-sm rounded-pill px-3 mb-1">Edit</button>
+                                    <button class="btn btn-detail-aes btn-sm rounded-pill px-3 mb-1">Detail</button>
+                                    <button class="btn btn-hapus-aes btn-sm rounded-pill px-3 mb-1">Hapus</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!-- Tambahkan ps-4 juga di sini -->
+                                <td class="ps-4 fw-medium text-secondary">A002</td>
+                                <td class="fw-bold">Budi Santoso</td>
+                                <td><span class="badge bg-secondary-subtle text-secondary border border-secondary">TI</span></td>
+                                <td>Batu</td>
+                                <td>0813xxxx</td>
+                                <td>budi.santoso@gmail.com</td>
+                                <td>2022-02-20</td>
+                                <td class="text-center">
+                                    <button class="btn btn-edit-aes btn-sm rounded-pill px-3 mb-1">Edit</button>
+                                    <button class="btn btn-detail-aes btn-sm rounded-pill px-3 mb-1">Detail</button>
+                                    <button class="btn btn-hapus-aes btn-sm rounded-pill px-3 mb-1">Hapus</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-secondary py-4 mt-auto">
+        <p class="mb-0 fw-medium">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 5</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
