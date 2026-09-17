@@ -1,0 +1,75 @@
+/* ===== Reset & Base Custom SIMPUS-Mini ===== */
+body { 
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #F9F9F6 !important; /* Warna krem super soft */
+}
+
+a {
+    color: #4A6054; /* Hijau Sage gelap */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+th:last-child,
+td:last-child {
+    text-align: center;
+}
+
+/* Warna Utama (Header, Judul, Tombol Simpan) */
+.bg-aesthetic { background-color: #4A6054 !important; }
+.text-aesthetic { color: #4A6054 !important; }
+.border-aesthetic { border-color: #4A6054 !important; }
+
+/* Tombol Aksi Tabel (Warna Pastel/Earth Tone) */
+.btn-edit-aes {
+    background-color: #D4A373; /* Cokelat muda / Sand */
+    color: #fff;
+    border: none;
+}
+.btn-edit-aes:hover { background-color: #b88a5d; color: #fff; }
+
+.btn-detail-aes {
+    background-color: #8FA396; /* Hijau pastel */
+    color: #fff;
+    border: none;
+}
+.btn-detail-aes:hover { background-color: #7a8e81; color: #fff; }
+
+.btn-hapus-aes {
+    background-color: #CB8A8A; /* Merah bata soft / Dusty red */
+    color: #fff;
+    border: none;
+}
+.btn-hapus-aes:hover { background-color: #b37373; color: #fff; }
+
+
+/* 1. Logika Menu Hamburger dari app.js */
+@media (max-width: 991px) {
+    header nav.nav-open {
+        display: block !important;
+    }
+}
+
+/* 2. Pesan Error Validasi Form */
+.error {
+    display: block;
+    color: #CB8A8A; /* Menggunakan warna dusty red dari tema kamu */
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* 3. Kolom Pencarian Aesthetic */
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #8FA396; /* Warna garis hijau sage */
+    border-radius: 4px;
+}
