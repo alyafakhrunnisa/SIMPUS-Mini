@@ -4,14 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SIMPUS-Mini | Beranda</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (Biar desain makin estetik) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Efek hover manis untuk card */
+        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important; }
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
     
-    <header class="navbar navbar-expand-lg navbar-dark shadow-sm bg-aesthetic">
+    <!-- Navbar -->
+    <header class="navbar navbar-expand-lg navbar-dark shadow-sm bg-aesthetic sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">SIMPUS-Mini</a>
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-book-half me-1 text-warning"></i> SIMPUS-Mini
+            </a>
             <button id="nav-toggle-btn" class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,96 +41,117 @@
     </header>
 
     <main class="container my-5">
-        <!-- Welcoming Section -->
-       <section class="card border-0 shadow-sm rounded-4 mb-4" style="background: linear-gradient(135deg, #ffffff 60%, #eef3f0 100%);">
-        <div class="card-body p-5 text-center">
-            <!-- Badge sapaan -->
-            <span class="badge rounded-pill px-3 py-2 mb-3 shadow-sm" style="background-color: #8FA396; color: white; font-weight: 500; letter-spacing: 0.5px;">
-                ✨ Halo, Admin!
-            </span>
-            
-            <h2 class="card-title fw-bold text-aesthetic mb-2">Selamat Datang di SIMPUS-Mini</h2>
-            <p class="card-text text-secondary mb-0" style="font-size: 1.05rem;">Sistem informasi manajemen perpustakaan modern dan responsif.</p>
-        </div>
-    </section>
+        
+        <!-- Hero Section (Lebih Gaul & Modern) -->
+        <section class="card border-0 rounded-4 mb-5 overflow-hidden shadow-sm" style="background: linear-gradient(135deg, #4A6054 0%, #8FA396 100%); color: white;">
+            <div class="card-body p-5 position-relative">
+                <div class="z-1 position-relative">
+                    <span class="badge bg-white text-aesthetic rounded-pill px-3 py-2 mb-3 shadow-sm" style="font-weight: 600; letter-spacing: 0.5px;">
+                        <i class="bi bi-stars text-warning"></i> Dashboard Admin 
+                    </span>
+                    <h2 class="fw-bold mb-3" style="font-size: 2.5rem;">Halo, Penggerak Literasi! ✨</h2>
+                    <p class="mb-0" style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; line-height: 1.6;">
+                        Kelola katalog perpustakaan, pantau sirkulasi peminjaman, dan bangun ekosistem membaca yang lebih modern dengan sentuhan estetika. Semua dalam kendalimu hari ini.
+                    </p>
+                </div>
+                <!-- Dekorasi latar belakang artistik -->
+                <div class="position-absolute rounded-circle" style="background: rgba(255,255,255,0.1); width: 200px; height: 200px; top: -50px; right: -20px;"></div>
+                <div class="position-absolute rounded-circle" style="background: rgba(255,255,255,0.05); width: 300px; height: 300px; bottom: -100px; right: 100px;"></div>
+            </div>
+        </section>
 
-        <!-- Ringkasan Data -->
+        <!-- Ringkasan Data (Dengan Ikon & Animasi Hover) -->
         <section class="mb-5">
-            <h5 class="mb-3 fw-bold text-aesthetic">Ringkasan Data</h5>
-            <div class="row g-3 text-center">
+            <h5 class="mb-3 fw-bold text-aesthetic">Ringkasan Sistem</h5>
+            <div class="row g-4 text-center">
                 <div class="col-6 col-lg-3">
-                    <div class="p-4 rounded-4 shadow-sm bg-white border-top border-4 border-aesthetic">
-                        <h3 class="h6 text-secondary fw-semibold">Total Buku</h3>
-                        <p class="fs-2 fw-bold mb-0 text-aesthetic">12</p>
+                    <div class="card border-0 border-bottom border-4 border-aesthetic shadow-sm h-100 bg-white hover-lift">
+                        <div class="card-body p-4">
+                            <i class="bi bi-journals fs-1 text-aesthetic mb-2 d-block"></i>
+                            <h3 class="h6 text-secondary fw-semibold">Total Buku</h3>
+                            <p class="fs-2 fw-bold mb-0 text-aesthetic">12</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <div class="p-4 rounded-4 shadow-sm bg-white border-top border-4" style="border-color: #8FA396 !important;">
-                        <h3 class="h6 text-secondary fw-semibold">Total Anggota</h3>
-                        <p class="fs-2 fw-bold mb-0" style="color: #8FA396;">8</p>
+                    <div class="card border-0 border-bottom border-4 shadow-sm h-100 bg-white hover-lift" style="border-color: #8FA396 !important;">
+                        <div class="card-body p-4">
+                            <i class="bi bi-people-fill fs-1 mb-2 d-block" style="color: #8FA396;"></i>
+                            <h3 class="h6 text-secondary fw-semibold">Total Anggota</h3>
+                            <p class="fs-2 fw-bold mb-0" style="color: #8FA396;">8</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <div class="p-4 rounded-4 shadow-sm bg-white border-top border-4" style="border-color: #D4A373 !important;">
-                        <h3 class="h6 text-secondary fw-semibold">Sedang Dipinjam</h3>
-                        <p class="fs-2 fw-bold mb-0" style="color: #D4A373;">3</p>
+                    <div class="card border-0 border-bottom border-4 shadow-sm h-100 bg-white hover-lift" style="border-color: #D4A373 !important;">
+                        <div class="card-body p-4">
+                            <i class="bi bi-bookmark-check-fill fs-1 mb-2 d-block" style="color: #D4A373;"></i>
+                            <h3 class="h6 text-secondary fw-semibold">Dipinjam</h3>
+                            <p class="fs-2 fw-bold mb-0" style="color: #D4A373;">3</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3">
-                    <div class="p-4 rounded-4 shadow-sm bg-white border-top border-4" style="border-color: #CB8A8A !important;">
-                        <h3 class="h6 text-secondary fw-semibold">Buku Terlambat</h3>
-                        <p class="fs-2 fw-bold mb-0" style="color: #CB8A8A;">1</p>
+                    <div class="card border-0 border-bottom border-4 shadow-sm h-100 bg-white hover-lift" style="border-color: #CB8A8A !important;">
+                        <div class="card-body p-4">
+                            <i class="bi bi-exclamation-octagon-fill fs-1 mb-2 d-block" style="color: #CB8A8A;"></i>
+                            <h3 class="h6 text-secondary fw-semibold">Terlambat</h3>
+                            <p class="fs-2 fw-bold mb-0" style="color: #CB8A8A;">1</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- buku terbaru -->
+        <!-- Buku Terbaru (Sleek Table) -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold text-aesthetic m-0">Buku Terbaru</h5>
-            <a href="buku/list.html" class="text-decoration-none small fw-medium" style="color: #8FA396;">Lihat Semua &rarr;</a>
+            <h5 class="fw-bold text-aesthetic m-0">Katalog Terbaru</h5>
+            <a href="buku/list.html" class="text-decoration-none small fw-bold shadow-sm rounded-pill px-3 py-1 bg-white" style="color: #8FA396; border: 1px solid #eef3f0;">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
-        <div class="table-responsive rounded-4 border-0 shadow-sm mb-5 bg-white">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="bg-light text-secondary">
+        <div class="table-responsive rounded-4 border-0 shadow-sm mb-5 bg-white p-2">
+            <table class="table table-hover align-middle mb-0 border-white">
+                <thead class="text-secondary" style="background-color: #fcfcfc;">
                     <tr>
-                        <th class="ps-4 py-3 border-bottom-0">Judul Buku</th>
-                        <th class="py-3 border-bottom-0">Pengarang</th>
-                        <th class="py-3 border-bottom-0 text-center">Status</th>
+                        <th class="ps-4 py-3 border-bottom-0 fw-semibold text-uppercase" style="font-size: 0.85rem;">Judul Buku</th>
+                        <th class="py-3 border-bottom-0 fw-semibold text-uppercase" style="font-size: 0.85rem;">Pengarang</th>
+                        <th class="py-3 border-bottom-0 fw-semibold text-uppercase text-center" style="font-size: 0.85rem;">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="ps-4 py-3 fw-medium">Laskar Pelangi</td>
+                        <td class="ps-4 py-3 fw-bold text-aesthetic">Laskar Pelangi</td>
                         <td class="text-secondary">Andrea Hirata</td>
-                        <td class="text-center"><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Tersedia</span></td>
+                        <td class="text-center"><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3">Tersedia</span></td>
                     </tr>
                     <tr>
-                        <td class="ps-4 py-3 fw-medium">Bumi Manusia</td>
+                        <td class="ps-4 py-3 fw-bold text-aesthetic">Bumi Manusia</td>
                         <td class="text-secondary">Pramoedya Ananta Toer</td>
-                        <td class="text-center"><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Tersedia</span></td>
+                        <td class="text-center"><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3">Tersedia</span></td>
                     </tr>
                     <tr>
-                        <td class="ps-4 py-3 fw-medium">Filosofi Teras</td>
+                        <td class="ps-4 py-3 fw-bold text-aesthetic">Filosofi Teras</td>
                         <td class="text-secondary">Henry Manampiring</td>
-                        <td class="text-center"><span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill">Dipinjam</span></td>
+                        <td class="text-center"><span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-3">Dipinjam</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- kutipan literasi -->
-        <div class="card border-0 shadow-sm rounded-4 mb-3" style="background-color: #ffffff;">
-            <div class="card-body p-4 text-center">
-                <p class="fst-italic text-secondary mb-3 fs-5">"Selalu ada harapan bagi mereka yang sering berdoa. Selalu ada jalan bagi mereka yang sering berusaha."</p>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary rounded-pill px-4 py-2">— Tere Liye (Komet)</span>
+        <!-- Kutipan Literasi (Vibes Novel Fiksi / Deep) -->
+        <div class="card border-0 shadow-sm rounded-4" style="background-color: #ffffff; border-left: 5px solid #D4A373 !important;">
+            <div class="card-body p-4 p-md-5 d-flex align-items-center gap-4">
+                <i class="bi bi-quote fs-1" style="color: #D4A373; opacity: 0.3; font-size: 4rem !important;"></i>
+                <div>
+                    <p class="fst-italic text-secondary mb-3 fs-5" style="line-height: 1.7;">"Selalu ada harapan bagi mereka yang sering berdoa. Selalu ada jalan bagi mereka yang sering berusaha."</p>
+                    <span class="badge bg-secondary-subtle text-secondary border border-secondary rounded-pill px-4 py-2 fw-medium">— Tere Liye</span>
+                </div>
             </div>
         </div>
 
     </main>
 
-    <footer class="text-center text-secondary py-4 mt-auto border-top">
-        <p class="mb-0 fw-medium">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6 </p>
+    <footer class="text-center text-secondary py-4 mt-auto border-top" style="background-color: #ffffff;">
+        <p class="mb-0 fw-medium">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SIMPUS-Mini | Daftar Buku</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light">
     
-    <header class="navbar navbar-expand-lg navbar-dark shadow-sm bg-aesthetic">
+    <header class="navbar navbar-expand-lg navbar-dark shadow-sm bg-aesthetic sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="../index.html">SIMPUS-Mini</a>
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="bi bi-book-half me-1 text-warning"></i> SIMPUS-Mini
+            </a>
             <button id="nav-toggle-btn" class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,36 +31,43 @@
     </header>
 
     <main class="container my-5">
-        <section class="card border-0 shadow-sm rounded-4">
-            <div class="card-body p-4">
+        <section class="card border-0 shadow-sm rounded-4 overflow-hidden">
+            <!-- Header Card dengan Gradient -->
+            <div class="bg-aesthetic text-white p-4" style="background: linear-gradient(135deg, #4A6054 0%, #6b8676 100%);">
+                <h3 class="fw-bold m-0"><i class="bi bi-journals me-2"></i>Katalog Buku</h3>
+                <p class="mb-0 text-white-50 small">Kelola koleksi literatur perpustakaan</p>
+            </div>
+            
+            <div class="card-body p-4 bg-white">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
-                    <h2 class="card-title fw-bold m-0 text-aesthetic">Daftar Buku</h2>
-                    
-                    <!-- Fitur Search Bar Aesthetic -->
+                    <!-- Search Bar -->
                     <div class="input-group shadow-sm" style="max-width: 350px;">
-                        <input type="text" id="search-input" class="form-control rounded-start-pill border-aesthetic" placeholder="Cari judul, pengarang, ISBN...">
-                        <button class="btn bg-aesthetic text-white rounded-end-pill px-4" type="button">Cari</button>
+                        <span class="input-group-text bg-white border-aesthetic text-aesthetic"><i class="bi bi-search"></i></span>
+                        <input type="text" id="search-input" class="form-control border-start-0 border-aesthetic" placeholder="Cari judul, pengarang...">
                     </div>
+                    <!-- Tombol Aksi -->
                     <div class="d-flex gap-2">
-                        <button id="btn-muat-ulang" class="btn text-secondary bg-light rounded-pill px-4 shadow-sm border">↻ Muat Ulang</button>
-                        <a href="tambah.html" class="btn text-white rounded-pill px-4 bg-aesthetic shadow-sm">+ Tambah Anggota</a>
+                        <button id="btn-muat-ulang" class="btn text-secondary bg-light rounded-pill px-4 shadow-sm border hover-lift"><i class="bi bi-arrow-clockwise me-1"></i> Muat Ulang</button>
+                        <a href="tambah.html" class="btn text-white rounded-pill px-4 bg-aesthetic shadow-sm hover-lift"><i class="bi bi-plus-lg me-1"></i> Tambah Buku</a>
                     </div>
                 </div>
-                <p id="loading-indicator" class="text-center text-secondary" style="display:none;">Memuat data...</p>
-                <div class="table-responsive rounded-3 border">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="bg-aesthetic text-white">
+                
+                <p id="loading-indicator" class="text-center text-secondary py-3" style="display:none;"><i class="bi bi-hourglass-split me-2"></i>Memuat data...</p>
+                
+                <div class="table-responsive rounded-3 border-0 shadow-sm">
+                    <table class="table table-hover align-middle mb-0 border-white">
+                        <thead class="bg-light text-secondary" style="border-bottom: 2px solid #eef3f0;">
                             <tr>
-                                <th class="py-2">Judul</th>
-                                <th>Pengarang</th>
-                                <th>Kategori</th>
-                                <th>ISBN</th>
-                                <th>Stok</th>
-                                <th class="text-center">Aksi</th>
+                                <th class="py-3 ps-4 text-uppercase" style="font-size: 0.85rem;">Judul</th>
+                                <th class="py-3 text-uppercase" style="font-size: 0.85rem;">Pengarang</th>
+                                <th class="py-3 text-uppercase" style="font-size: 0.85rem;">Kategori</th>
+                                <th class="py-3 text-uppercase" style="font-size: 0.85rem;">ISBN</th>
+                                <th class="py-3 text-uppercase" style="font-size: 0.85rem;">Stok</th>
+                                <th class="py-3 text-center text-uppercase" style="font-size: 0.85rem;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <!-- Data JSON akan dimuat di sini oleh JS -->
                         </tbody>
                     </table>
                 </div>
@@ -65,8 +75,8 @@
         </section>
     </main>
 
-    <footer class="text-center text-secondary py-4 mt-auto">
-        <p class="mb-0 fw-medium">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6 </p>
+    <footer class="text-center text-secondary py-4 mt-auto border-top bg-white">
+        <p class="mb-0 fw-medium">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
