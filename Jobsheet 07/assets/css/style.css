@@ -47,17 +47,9 @@ td:last-child {
 
 
 /* 1. Logika Menu Hamburger dari app.js */
-/*latihan tambahan 2 */
 @media (max-width: 991px) {
-    header nav {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out;
-        display: block !important;
-    }
-
     header nav.nav-open {
-        max-height: 300px; 
+        display: block !important;
     }
 }
 
@@ -81,5 +73,3 @@ td:last-child {
     border: 1px solid #8FA396; /* Warna garis hijau sage */
     border-radius: 4px;
 }
-
-
