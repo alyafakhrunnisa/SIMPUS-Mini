@@ -2,14 +2,14 @@
 $page_title = "Daftar Buku";
 include __DIR__ . '/../includes/header.php';
 
-// 1. Panggil koneksi database
+// Panggil koneksi database
 require __DIR__ . '/../includes/koneksi.php';
 
 // Menangkap flash message
 $flash =$_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-// 2. Ambil data buku dari PostgreSQL (Bukan dari $_SESSION lagi)
+// Ambil data buku dari PostgreSQL (Bukan dari $_SESSION lagi)
 $daftarBuku =$pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 // Fitur Pencarian Aktif (Tetap dipertahankan)

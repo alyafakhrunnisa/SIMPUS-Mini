@@ -2,14 +2,14 @@
 $page_title = "Daftar Anggota";
 include __DIR__ . '/../includes/header.php';
 
-// 1. Panggil koneksi database
+// Panggil koneksi database
 require __DIR__ . '/../includes/koneksi.php';
 
 // Menangkap flash message
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-// 2. Ambil data dari database. 
+// Ambil data dari database. 
 // Menggunakan trik "AS" agar nama kolom database (no_anggota, no_hp) berubah jadi (nim, telepon) saat ditarik ke array, sehingga HTML tabel di bawah tidak perlu diedit sama sekali!
 $data_anggota = $pdo->query("SELECT no_anggota AS nim, nama, email, prodi, alamat, no_hp AS telepon, tanggal FROM anggota ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
