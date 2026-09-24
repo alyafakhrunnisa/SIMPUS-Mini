@@ -9,18 +9,17 @@ require __DIR__ . '/../includes/koneksi.php';
 $flash =$_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-// Ambil data buku dari PostgreSQL (Bukan dari $_SESSION lagi)
-$daftarBuku =$pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
-
-// Fitur Pencarian Aktif (Tetap dipertahankan)
+//  Fitur Pencarian Aktif di Server (Tugas 3)
 $search =$_GET['search'] ?? '';
+
 if ($search !== '') {
-    $daftarBuku = array_filter($daftarBuku, function($buku) use ($search) {
-        $term = strtolower($search);
-        // Mencari berdasarkan Judul atau Pengarang
-        return strpos(strtolower($buku['judul']),$term) !== false || 
-               strpos(strtolower($buku['pengarang']),$term) !== false;
-    });
+    // Cari langsung di database menggunakan ILIKE
+    $stmt =$pdo->prepare("SELECT * FROM buku WHERE judul ILIKE :keyword OR pengarang ILIKE :keyword ORDER BY id DESC");
+    $stmt->execute(['keyword' => '\%' .$search . '%']);
+    $daftarBuku =$stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Ambil semua jika tidak ada pencarian
+    $daftarBuku =$pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
     <section class="mx-auto mb-5" style="max-width: 1100px;">
@@ -64,7 +63,7 @@ if ($search !== '') {
                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .471-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                         </svg>
                         Reset Data
-                    </a>
+                </a>
                 <button type="button" onclick="muatUlangBuku()" class="btn btn-light border text-secondary fw-medium rounded-pill px-4 py-2 shadow-sm text-nowrap" style="font-size: 0.9rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise me-1 mb-1" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
@@ -90,18 +89,19 @@ if ($search !== '') {
                                 <th class="py-4 border-bottom-0">KATEGORI</th>
                                 <th class="py-4 border-bottom-0">ISBN</th>
                                 <th class="py-4 border-bottom-0">STOK</th>
+                                <th class="py-4 border-bottom-0">WAKTU DITAMBAH</th>
                                 <th class="text-center py-4 border-bottom-0 pe-4">AKSI</th>
                             </tr>
                         </thead>
                         <tbody class="border-top" id="tabel-buku">
                             <?php if (empty($daftarBuku)): ?>
                             <tr>
-                                <td colspan="6" class="text-center py-5 text-secondary">
+                                <td colspan="7" class="text-center py-5 text-secondary">
                                     <?php echo $search !== '' ? 'Buku tidak ditemukan.' : 'Belum ada data buku. Silakan tambah lewat menu "Tambah Buku".'; ?>
                                 </td>
                             </tr>
                             <?php else: ?>
-                                <?php foreach ($daftarBuku as $index =>$buku): ?>
+                                <?php foreach ($daftarBuku as$buku): ?>
                                 <tr>
                                     <td class="ps-4 py-3 fw-bold text-dark" style="font-size: 0.9rem;"><?php echo htmlspecialchars($buku['judul']); ?></td>
                                     <td class="py-3 text-secondary" style="font-size: 0.9rem;"><?php echo htmlspecialchars($buku['pengarang']); ?></td>
@@ -114,11 +114,15 @@ if ($search !== '') {
                                             <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill px-3 py-1" style="font-weight: 500; font-size: 0.8rem;">Habis</span>
                                         <?php endif; ?>
                                     </td>
+                                    <td class="py-3 text-secondary" style="font-size: 0.9rem;">
+                                        <?php echo !empty($buku['tanggal_ditambahkan']) ? date('d M Y, H:i', strtotime($buku['tanggal_ditambahkan'])) : '-'; ?>
+                                    </td>
                                     <td class="text-center py-3 pe-4">
                                         <div class="d-flex justify-content-center gap-1">
-                                            <a href="edit.php?id=<?php echo $index; ?>" class="btn btn-sm btn-outline-warning rounded-pill px-3" style="font-size: 0.8rem; font-weight: 500;">Edit</a>
-                                            <a href="detail.php?id=<?php echo $index; ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3" style="font-size: 0.8rem; font-weight: 500;">Detail</a>
-                                            <a href="hapus.php?id=<?php echo $index; ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3" style="font-size: 0.8rem; font-weight: 500;" onclick="return confirm('Yakin ingin menghapus buku ini?');">Hapus</a>
+                                            <!-- 2. Perubahan Penting: Gunakan ID dari database, bukan $index -->
+                                            <a href="edit.php?id=<?php echo $buku['id']; ?>" class="btn btn-sm btn-outline-warning rounded-pill px-3" style="font-size: 0.8rem; font-weight: 500;">Edit</a>
+                                            <a href="detail.php?id=<?php echo $buku['id']; ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3" style="font-size: 0.8rem; font-weight: 500;">Detail</a>
+                                            <a href="hapus.php?id=<?php echo $buku['id']; ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3" style="font-size: 0.8rem; font-weight: 500;" onclick="return confirm('Yakin ingin menghapus buku ini?');">Hapus</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -130,14 +134,14 @@ if ($search !== '') {
             </div>
         </div>
     </section>
-
-    <!-- Script JavaScript untuk memunculkan efek loading -->
+    
     <script>
     function muatUlangBuku() {
         const tbody = document.getElementById('tabel-buku');
         tbody.innerHTML = `
             <tr>
-                <td colspan="6" class="text-center py-5 text-secondary" style="font-size: 0.95rem;">
+                <!-- 3. Perubahan colspan="6" menjadi colspan="7" -->
+                <td colspan="7" class="text-center py-5 text-secondary" style="font-size: 0.95rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-split me-2 mb-1" viewBox="0 0 16 16">
                       <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"/>
                     </svg>

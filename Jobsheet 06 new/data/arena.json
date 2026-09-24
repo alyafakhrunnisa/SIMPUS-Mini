@@ -1,7 +1,0 @@
-[
-    { "id_arena": "BD-01", "nama": "Lapangan Badminton VIP 1", "kategori": "Badminton", "harga": 50000, "status": "Tersedia" },
-    { "id_arena": "BD-02", "nama": "Lapangan Badminton Reguler", "kategori": "Badminton", "harga": 35000, "status": "Dipakai" },
-    { "id_arena": "BL-01", "nama": "Meja Biliar 9-Ball Standar", "kategori": "Biliar", "harga": 40000, "status": "Tersedia" },
-    { "id_arena": "BL-02", "nama": "Meja Biliar VIP Pro", "kategori": "Biliar", "harga": 75000, "status": "Tersedia" },
-    { "id_arena": "FS-01", "nama": "Lapangan Futsal Sintetis", "kategori": "Futsal", "harga": 120000, "status": "Dipakai" }
-]

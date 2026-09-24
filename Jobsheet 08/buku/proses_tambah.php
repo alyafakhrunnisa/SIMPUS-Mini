@@ -26,21 +26,27 @@ if (!empty($errors)) {
     exit;
 }
 
-// --- BAGIAN YANG BERUBAH: Simpan ke Database PostgreSQL ---
-$stmt = $pdo->prepare(
-    "INSERT INTO buku (judul, pengarang, tahun, isbn, stok, kategori)
-     VALUES (:judul, :pengarang, :tahun, :isbn, :stok, :kategori)
-     RETURNING id"
-);
+// Simpan ke Database PostgreSQL ---
+try {
+    $stmt = $pdo->prepare(
+        "INSERT INTO buku (judul, pengarang, kategori, isbn, stok) 
+         VALUES (:judul, :pengarang, :kategori, :isbn, :stok)"
+    );
 
-$stmt->execute([
-    'judul' => $judul,
-    'pengarang' => $pengarang,
-    'tahun' => (int) $tahun,
-    'isbn' => $isbn,
-    'stok' => (int) $stok,
-    'kategori' => $kategori,
-]);
+    $stmt->execute([
+        'judul'     => $judul,
+        'pengarang' => $pengarang,
+        'kategori'  => $kategori,
+        'isbn'      => $isbn,
+        'stok'      => $stok
+    ]);
+
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data buku berhasil ditambahkan!'];
+} catch (PDOException $e) {
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menyimpan data ke database: ' . $e->getMessage()];
+    header('Location: tambah.php');
+    exit;
+}
 
 // Set pesan sukses dan pindah ke halaman daftar
 $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Data buku berhasil disimpan ke database!'];
