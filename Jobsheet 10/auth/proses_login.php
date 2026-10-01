@@ -2,7 +2,28 @@
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
-// Pastikan yang masuk ke sini adalah dari form POST
+$waktu_tunggu = 60; 
+
+
+if (isset($_SESSION['lockout_time'])) {
+    $waktu_berlalu = time() - $_SESSION['lockout_time'];
+
+    if ($waktu_berlalu < $waktu_tunggu) {
+       
+        $sisa_waktu = $waktu_tunggu - $waktu_berlalu;
+        $_SESSION['flash'] = ['type' => 'error', 'pesan' => "Akun dikunci sementara! Coba lagi dalam $sisa_waktu detik."];
+        header('Location: login.php');
+        exit;
+    } else {
+        unset($_SESSION['lockout_time']);
+        $_SESSION['login_attempts'] = 0;
+    }
+}
+
+
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+}
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: login.php');
     exit;
@@ -11,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
 
-// Validasi Input Kosong
 if (empty($username) || empty($password)) {
     $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Username dan Password wajib diisi!'];
     header('Location: login.php');
@@ -19,27 +39,34 @@ if (empty($username) || empty($password)) {
 }
 
 try {
-    // Cari user di database berdasarkan username
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
     $stmt->execute(['username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Cek apakah user ada DAN passwordnya cocok
     if ($user && password_verify($password, $user['password'])) {
-        
-        // Jika cocok, buat sesi login (kunci masuk)
+        $_SESSION['login_attempts'] = 0;
+        unset($_SESSION['lockout_time']);
+
         $_SESSION['logged_in'] = true;
         $_SESSION['user_id']   = $user['id'];
         $_SESSION['username']  = $user['username'];
         $_SESSION['role']      = $user['role'];
         $_SESSION['nama']      = $user['nama'];
 
-        // Arahkan ke halaman utama SIMPUS-Mini
         header('Location: ../index.php');
         exit;
     } else {
-        // Jika gagal, kembalikan ke halaman login dengan pesan error
-        $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Username atau Password salah!'];
+        $_SESSION['login_attempts'] += 1;
+
+        if ($_SESSION['login_attempts'] >= 3) {
+            // Kena blokir! Catat waktu tepat saat kejadian
+            $_SESSION['lockout_time'] = time();
+            $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Akun dikunci! Anda gagal 3 kali berturut-turut. Tunggu 1 menit.'];
+        } else {
+            $sisa = 3 - $_SESSION['login_attempts'];
+            $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Username atau Password salah! Sisa percobaan: ' . $sisa];
+        }
+
         header('Location: login.php');
         exit;
     }
